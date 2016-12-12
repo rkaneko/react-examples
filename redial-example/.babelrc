@@ -1,3 +1,9 @@
 {
-  "plugins": ["syntax-decorators"]
+  "plugins": [
+    "syntax-decorators"
+  ]
+  , "presets": [
+    "es2015"
+    , "react"
+  ]
 }
