@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import React, { Component } from 'react';
+import { providerHooks } from 'redial';
+
+import actions from './actions.js';
+
+@providerHooks({})
 class App extends Component {
   render() {
     return (
