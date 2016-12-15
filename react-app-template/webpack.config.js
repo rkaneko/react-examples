@@ -31,11 +31,7 @@ module.exports = {
         ],
         // Only run `.js`
         test: /\.js$/,
-        exclude: /node_modules/,
-        query: {
-          plugins: ['transform-runtime'],
-          presets: ['es2015', 'react'],
-        }
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
