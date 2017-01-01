@@ -6,8 +6,9 @@ const ReactDOM = require('react-dom');
 require('./observable-config.js');
 
 const App = require('../container/app.js');
+const CounterApp = require('../container/counter-app.js');
 
 ReactDOM.render(
-  <App />
+  <CounterApp />
   , document.getElementsByClassName('main-container')[0]
 );
