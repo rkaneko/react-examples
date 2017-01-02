@@ -4,14 +4,7 @@ const React = require('react');
 const {Component} = React;
 const {createEventHandler} = require('recompose');
 
-const Counter = ({count = 0, handleCount}) => {
-  return (
-    <div>
-     Count: {count}
-     <button type="button" onClick={handleCount}>+</button>
-    </div>
-  );
-};
+const Counter = require('../component/counter.js');
 
 class CounterApp extends Component {
   constructor(props) {
@@ -21,38 +14,29 @@ class CounterApp extends Component {
 
   componentDidMount() {
     const {stream, handler} = createEventHandler();
-    this.countSubscription = stream.subscribe({
-      next: diff => {
-        const count = this.state.count + diff;
+    this.incrementSubscription = stream.mapTo(1).startWith(0).subscribe({
+      next: v => {
+        const count = this.state.count + v;
         const nextState = Object.assign({}, this.state, {count});
         this.setState(nextState);
         // if u need dispatch action for the global state, plz dipatch here.
         // dispatch(someAction);
       }
     });
-    this.countEmitter = handler;
+    this.handleIncrement = handler;
   }
 
   componentWillUnmount() {
-    if (this.countSubscription) {
-      countSubscription.unsubscribe();
+    if (this.incrementSubscription) {
+      incrementSubscription.unsubscribe();
     }
   }
 
-  handleCount(evt) {
-    evt.preventDefault();
-    const diff = 1;
-    this.countEmitter(diff);
-  }
-
   render() {
-    const handleCount = this.handleCount.bind(this);
     const {count} = this.state;
-    const counterProps = {count, handleCount};
+    const counterProps = {count, handleIncrement: this.handleIncrement};
     return (
-      <div>
-        <Counter {...counterProps} />
-      </div>
+      <Counter {...counterProps} />
     );
   }
 }

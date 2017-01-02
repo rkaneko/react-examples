@@ -9,6 +9,9 @@ const App = require('../container/app.js');
 const CounterApp = require('../container/counter-app.js');
 
 ReactDOM.render(
-  <CounterApp />
+  <div>
+    <App />
+    <CounterApp />
+  </div>
   , document.getElementsByClassName('main-container')[0]
 );

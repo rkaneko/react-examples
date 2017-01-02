@@ -1,16 +1,17 @@
 'use strict';
 
 const React = require('react');
-const { Component } = React;
+const {Component} = React;
 
-// const Counter = require('../component/enhanced-counter-component.js');
-const Counter = require('../component/counter-using-hoc.js');
+const Counter1 = require('../component/counter-using-component-from-stream.js');
+const Counter2 = require('../component/counter-using-map-props-stream.js');
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Counter />
+        <Counter1 />
+        <Counter2 />
       </div>
     );
   }
