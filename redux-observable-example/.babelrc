@@ -1,6 +1,7 @@
 {
   "sourceMaps": "inline",
   "plugins": [
+    ["transform-object-rest-spread", {"userBuiltIns": true}]
   ],
   "presets": [
     [
@@ -37,6 +38,7 @@
               ]
             },
             "modules": "commonjs",
+            "loose": true,
             "useBuiltIns": true
           }
         ],
