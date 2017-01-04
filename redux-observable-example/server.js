@@ -1,16 +1,18 @@
-var bodyParser = require('body-parser');
-var express = require('express');
-var path = require('path');
-var webpack = require('webpack');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
+'use strict';
 
-var config = require('./webpack.config');
+const bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
-var app = new express();
-var port = 3000;
+const config = require('./webpack.config');
 
-var compiler = webpack(config);
+const app = new express();
+const port = 3000;
+
+const compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
 
@@ -27,18 +29,22 @@ function sendJson(req, res, file) {
 // sample
 app.get('/apis/foo', function(req, res) {
   sendJson(req, res, 'foo.json');
-})
+});
 
 app.post('/apis/foo', function(req, res) {
-  var bar = req.body.bar;
+  const bar = req.body.bar;
   console.log(bar);
 
   sendJson(req, res, 'foo.json');
-})
+});
+
+app.get('/apis/users', function(req, res) {
+  sendJson(req, res, 'users.json');
+});
 
 app.get(/^(?!\/apis\/).*$/, function(req, res) {
   res.sendFile(path.join(__dirname, 'src', 'index.html'));
-})
+});
 
 app.listen(port, function(error) {
   if (error) {
@@ -46,4 +52,4 @@ app.listen(port, function(error) {
   } else {
     console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port);
   }
-})
+});
