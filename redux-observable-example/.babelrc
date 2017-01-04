@@ -1,0 +1,47 @@
+{
+  "sourceMaps": "inline",
+  "plugins": [
+  ],
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          /* "node": "current", */
+          "browsers": [
+            "last 2 Chrome versions"
+          ]
+        },
+        "modules": "commonjs",
+        "useBuiltIns": true,
+        "loose": false
+      }
+    ],
+    "react"
+  ],
+  "env": {
+    "test": {
+    },
+    "production": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "browsers": [
+                "last 2 Chrome versions",
+                "last 2 Firefox versions",
+                "ie 9-11",
+                "not ie 10",
+                "last 1 Safari version"
+              ]
+            },
+            "modules": "commonjs",
+            "useBuiltIns": true
+          }
+        ],
+        "react"
+      ]
+    }
+  }
+}
