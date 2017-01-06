@@ -33,7 +33,10 @@ module.exports = {
         ],
         // Only run `.js`
         test: /\.js$/,
-        exclude: /node_modules/
+        exclude: [
+          /node_modules/,
+          /src\/test/
+        ]
       },
       {
         test: /\.css$/,
