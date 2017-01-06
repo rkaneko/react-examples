@@ -11,6 +11,7 @@ function reducer(state = initialState, action) {
   const {type, payload} = action;
   switch (type) {
   case actionTypes.RECEIVE_USERS:
+  case actionTypes.FETCH_USERS_REJECTED:
     const {users} = payload;
     return {...state, users};
   default:
