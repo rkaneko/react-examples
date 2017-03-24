@@ -15,54 +15,53 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   node: {
     fs: 'empty',
   },
   module: {
-    loaders: [
+    rules: [
       {
-        loader: 'babel-loader',
+        test: /\.js$/,
         include: [
           path.resolve(__dirname, 'src')
         ],
-        // Only run `.js`
-        test: /\.js$/,
-        exclude: /node_modules/
+        exclude: [/node_modules/],
+        use: [
+          {loader: 'babel-loader'}
+        ]
       },
       {
         test: /\.css$/,
         exclude: [path.resolve(__dirname, 'src', 'css', 'some.css')],
-        loader: 'style-loader!css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]!postcss-loader'
+        use: [
+          {loader: 'style-loader'},
+          {loader: 'css-loader', options: {modules:true, sourceMap: true, importLoaders: 1, localIdentName: '[name]__[local]'}},
+          {loader: 'postcss-loader', options: {plugins: () =>[]}}
+        ]
       },
       {
         test: /\.(woff|woff2|ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&minetype=application/font-woff'
+        use: [
+          {loader: 'url-loader'}
+          // {loader: 'url-loader' options: {limit: 10000, minetype: 'application/font-woff'}}
+        ]
       },
       {
         test: /\.(png|jpg|svg)$/,
-        loader: 'url-loader'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
+        use: [
+          {loader: 'url-loader'}
+        ]
       },
       {
         test: /(\.txt|\.md|LICENSE)$/,
-        loader: 'raw-loader'
-      },
-      {
-        test: /.html$/,
-        loader: 'html-loader'
+        use: [
+          {loader: 'raw-loader'}
+        ]
       }
     ]
-  },
-  postcss: function (webpack) {
-    return [
-      autoprefixer
-    ];
   }
 }
