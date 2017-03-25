@@ -39,8 +39,24 @@ module.exports = {
         exclude: [path.resolve(__dirname, 'src', 'css', 'some.css')],
         use: [
           {loader: 'style-loader'},
-          {loader: 'css-loader', options: {modules:true, sourceMap: true, importLoaders: 1, localIdentName: '[name]__[local]'}},
-          {loader: 'postcss-loader', options: {plugins: () =>[]}}
+          {
+            loader: 'css-loader',
+            options: {
+              modules:true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]'
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () =>
+                [
+                  require('autoprefixer')
+                ]
+            }
+          }
         ]
       },
       {
