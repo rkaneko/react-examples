@@ -46,6 +46,7 @@ targets.map((pathToTarget, index) => {
   const pathToMinified = path.join(segments.slice(0, segments.length - 1).join(path.sep), 'static', segments[segments.length - 1]);
   shell.exec(`$(npm bin)/babili ${pathToTarget} --out-file ${pathToMinified}`, (code, stdout, stderr) => {
     console.log(`minified: ${pathToMinified}`);
+    shell.rm('-f', pathToTarget);
     if (index === targets.length - 1) {
       process.exit(code);
     }
