@@ -1,9 +1,26 @@
 {
   "plugins": [
     "transform-runtime"
-  ]
-  , "presets": [
-    "es2015"
-    , "react"
+  ],
+  "presets": [
+    [
+      "env", {
+        "targets": {
+          "browsers": [
+            "last 2 Chrome versions",
+            "last 2 Firefox version",
+            "ie 11",
+            "last 2 Edge versions",
+            "last 2 Safari version"
+          ]
+        },
+        "loose": true,
+        "module": "commonjs",
+        "include": [],
+        "exclude": [],
+        "useBuiltIns": true
+      }
+    ],
+    "react"
   ]
 }
