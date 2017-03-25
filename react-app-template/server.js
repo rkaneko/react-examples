@@ -14,7 +14,7 @@ var compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
 
-app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static(path.join(__dirname, 'public')));
 // json config
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,10 +34,6 @@ app.post('/apis/foo', function(req, res) {
   console.log(bar);
 
   sendJson(req, res, 'foo.json');
-})
-
-app.get(/^(?!\/apis\/).*$/, function(req, res) {
-  res.sendFile(path.join(__dirname, 'src', 'index.html'));
 })
 
 app.listen(port, function(error) {
