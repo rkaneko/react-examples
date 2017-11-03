@@ -6,11 +6,11 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    'babel-polyfill',
+    '@babel/polyfill',
     './src/js/index.js'
   ],
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'public', 'static'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },

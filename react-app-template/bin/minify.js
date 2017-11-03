@@ -44,7 +44,7 @@ const targets = find(path.join(__dirname, '..', 'public'), isMinifyTarget);
 targets.map((pathToTarget, index) => {
   const segments = pathToTarget.split(path.sep);
   const pathToMinified = path.join(segments.slice(0, segments.length - 1).join(path.sep), 'static', segments[segments.length - 1]);
-  shell.exec(`$(npm bin)/babili ${pathToTarget} --out-file ${pathToMinified}`, (code, stdout, stderr) => {
+  shell.exec(`$(npm bin)/minify ${pathToTarget} --out-file ${pathToMinified}`, (code, stdout, stderr) => {
     console.log(`minified: ${pathToMinified}`);
     shell.rm('-f', pathToTarget);
     if (index === targets.length - 1) {
